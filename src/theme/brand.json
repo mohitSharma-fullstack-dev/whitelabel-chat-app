@@ -1,0 +1,28 @@
+{
+  "appName": "Nimbus",
+  "tagline": "Stay close, wherever you are.",
+  "logoInitial": "N",
+  "colors": {
+    "primary": "#1F6F6B",
+    "primaryDark": "#123F3D",
+    "primaryLight": "#DCEBEA",
+    "accent": "#FF7A59",
+    "success": "#34A876",
+    "danger": "#E0523F",
+    "background": "#F7F9F8",
+    "surface": "#FFFFFF",
+    "textPrimary": "#16211F",
+    "textSecondary": "#5B6B68",
+    "textInverse": "#FFFFFF",
+    "border": "#E3E8E7",
+    "bubbleOutgoing": "#1F6F6B",
+    "bubbleIncoming": "#EEF2F1"
+  },
+  "features": {
+    "endToEndEncryption": true,
+    "fileSharing": true,
+    "readReceipts": true,
+    "typingIndicators": true,
+    "maxFileUploadMb": 25
+  }
+}
