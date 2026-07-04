@@ -3,6 +3,8 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-nativ
 import { Ionicons } from '@expo/vector-icons';
 import { useBrand, type, spacing, radius } from '../theme/ThemeContext';
 
+// Two-state screen driven by local `sent` flag — no email is actually sent;
+// tapping "Send reset link" just swaps to the confirmation view after a beat.
 export default function ForgotPasswordScreen({ navigation }) {
   const brand = useBrand();
   const c = brand.colors;

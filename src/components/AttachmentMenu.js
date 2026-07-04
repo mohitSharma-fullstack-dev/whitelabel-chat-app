@@ -9,6 +9,9 @@ const OPTIONS = [
   { key: 'document', label: 'Browse Files', icon: 'folder-outline' },
 ];
 
+// Bottom-sheet modal (camera / gallery / file) shown from ConversationScreen's
+// "+" button. Actual permission requests and picker calls live in the
+// screen's handleAttachOption — this component is presentation-only.
 export default function AttachmentMenu({ visible, onClose, onSelect }) {
   const brand = useBrand();
   const c = brand.colors;

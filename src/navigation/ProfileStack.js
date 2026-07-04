@@ -6,6 +6,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 
 const Stack = createNativeStackNavigator();
 
+// Nested stack behind the "ProfileTab" bottom tab.
 export default function ProfileStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>

@@ -13,6 +13,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { useBrand, type, spacing, radius } from '../theme/ThemeContext';
 import { useAuth } from '../navigation/AuthContext';
 
+// UI-only login: `signIn()` immediately flips the mock auth flag — there's no
+// credential check, network call, or error state. Google/Apple buttons are
+// non-functional placeholders for the real OAuth flow.
 export default function LoginScreen({ navigation }) {
   const brand = useBrand();
   const c = brand.colors;

@@ -20,6 +20,8 @@ import AttachmentMenu from '../components/AttachmentMenu';
 import { findChat, findGroup } from '../data/chats';
 import { findUser } from '../data/users';
 
+// expo-image-picker/document-picker return raw byte counts; UI everywhere
+// else (mock data, previews) expects a human string like "2.4 MB".
 function formatBytes(bytes) {
   if (!bytes) return '';
   if (bytes < 1024) return `${bytes} B`;
@@ -49,6 +51,8 @@ function getHeaderMeta(chat) {
   };
 }
 
+// WhatsApp-style receipt ticks: single check = sent, double = delivered,
+// double + brand color = read. Only rendered on messages `from: 'me'`.
 function StatusTick({ status, color }) {
   if (status === 'read') return <Ionicons name="checkmark-done" size={14} color={color} />;
   if (status === 'delivered') return <Ionicons name="checkmark-done" size={14} color="rgba(255,255,255,0.7)" />;
@@ -67,6 +71,9 @@ export default function ConversationScreen({ route, navigation }) {
   const [attachMenuVisible, setAttachMenuVisible] = useState(false);
   const listRef = useRef(null);
 
+  // Simulates the other person typing for 2.6s on mount (direct chats only —
+  // groups have no single "other person"). There's no real presence channel;
+  // this is purely a demo of the typing-indicator UI.
   useEffect(() => {
     if (!typing) return;
     const t = setTimeout(() => setTyping(false), 2600);
@@ -92,6 +99,9 @@ export default function ConversationScreen({ route, navigation }) {
     setTimeout(() => listRef.current?.scrollToEnd({ animated: true }), 100);
   };
 
+  // AttachmentPreviewScreen needs to hand the finished message back to this
+  // screen's message list, so we pass `appendMessage` itself through route
+  // params rather than lifting state up or using a global store.
   const openAttachmentPreview = (attachment) => {
     setAttachMenuVisible(false);
     navigation.navigate('AttachmentPreview', {
@@ -101,6 +111,9 @@ export default function ConversationScreen({ route, navigation }) {
     });
   };
 
+  // Bridges AttachmentMenu's three options to the matching Expo picker API,
+  // requesting the relevant permission first and bailing out quietly on
+  // denial/cancel. Any picker failure surfaces as a generic alert.
   const handleAttachOption = async (option) => {
     try {
       if (option === 'camera') {
@@ -156,6 +169,8 @@ export default function ConversationScreen({ route, navigation }) {
     }
   };
 
+  // Tapping the header (avatar/name) opens GroupInfo or ContactProfile
+  // depending on chat type, each with the params it expects.
   const infoRoute = chat.type === 'group' ? 'GroupInfo' : 'ContactProfile';
   const infoParams =
     chat.type === 'group'

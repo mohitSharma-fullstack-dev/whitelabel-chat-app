@@ -21,6 +21,8 @@ export default function EditProfileScreen({ navigation }) {
           <Ionicons name="arrow-back" size={22} color={c.textPrimary} />
         </TouchableOpacity>
         <Text style={[type.h3, { color: c.textPrimary }]}>Edit profile</Text>
+        {/* No persistence — flips the button to "Saved" for a beat, purely to
+            show the state transition, then pops back. */}
         <TouchableOpacity
           onPress={() => {
             setSaved(true);

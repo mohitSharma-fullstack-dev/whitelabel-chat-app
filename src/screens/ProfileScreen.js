@@ -30,6 +30,8 @@ export default function ProfileScreen({ navigation }) {
           size={90}
           photoUrl={currentUser.avatarUrl}
         />
+        {/* currentUser.name is the placeholder 'You' used elsewhere (e.g. message
+            bubbles); here we show a real display name instead. */}
         <Text style={[type.h2, { color: c.textPrimary, marginTop: spacing.md }]}>
           {currentUser.name === 'You' ? 'Jordan Lee' : currentUser.name}
         </Text>

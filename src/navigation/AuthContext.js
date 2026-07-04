@@ -1,5 +1,9 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
 
+// Mock auth: no token, no backend call — signIn()/signOut() just flip a boolean.
+// RootNavigator reads isSignedIn to decide between AuthStack and MainTabs.
+// Swap this for real session handling (token storage, refresh, etc.) when the API exists.
+
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {

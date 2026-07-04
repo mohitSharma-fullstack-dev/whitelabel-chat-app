@@ -4,6 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useBrand, type, spacing, radius } from '../theme/ThemeContext';
 import { useAuth } from '../navigation/AuthContext';
 
+// Local layout helper for the icon-label-control pattern repeated in the
+// Notifications card; not shared outside this screen so it isn't in src/components.
 function Row({ icon, label, children, c }) {
   return (
     <View style={[styles.row, { borderBottomColor: c.border }]}>
@@ -18,6 +20,9 @@ export default function SettingsScreen({ navigation }) {
   const brand = useBrand();
   const c = brand.colors;
   const { signOut } = useAuth();
+  // Toggles are local-only (no persistence). readReceipts seeds from the
+  // brand config's feature flag but becomes a normal, freely-toggleable
+  // switch from then on — it doesn't write back to brand.json.
   const [notifications, setNotifications] = useState(true);
   const [sound, setSound] = useState(true);
   const [readReceipts, setReadReceipts] = useState(brand.features.readReceipts);

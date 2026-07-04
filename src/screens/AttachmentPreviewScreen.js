@@ -12,12 +12,18 @@ export default function AttachmentPreviewScreen({ route, navigation }) {
   const [caption, setCaption] = useState('');
   const [sent, setSent] = useState(false);
 
+  // fileSize is a formatted string (e.g. "2.4 MB") from formatBytes(), not a
+  // raw number, so the MB limit check only applies when the unit is MB —
+  // KB/B files are always considered under the brand's maxFileUploadMb.
   const sizeMb = attachment.fileSize && attachment.fileSize.endsWith('MB')
     ? parseFloat(attachment.fileSize)
     : 0;
   const overLimit = brand.features.fileSharing && sizeMb > brand.features.maxFileUploadMb;
   const canSend = brand.features.fileSharing && !overLimit && !sent;
 
+  // Shows a brief "Sent" state before calling back into ConversationScreen
+  // (via the `onSend` callback passed through route params) and popping the
+  // modal, so the checkmark is visible for a moment rather than an instant close.
   const handleSend = () => {
     if (!canSend) return;
     setSent(true);

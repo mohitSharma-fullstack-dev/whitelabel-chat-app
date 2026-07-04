@@ -7,6 +7,8 @@ import { useBrand } from '../theme/ThemeContext';
 
 const Tab = createBottomTabNavigator();
 
+// Rendered by RootNavigator once signed in. Tab bar colors come from brand.json
+// so a re-skin doesn't require touching this component.
 export default function MainTabs() {
   const brand = useBrand();
   const c = brand.colors;

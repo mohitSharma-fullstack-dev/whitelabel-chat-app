@@ -17,6 +17,8 @@ export function useBrand() {
   return useContext(ThemeContext);
 }
 
+// Design tokens shared by every screen/component, independent of brand.json.
+// Brand config controls *colors and copy*; these control *layout rhythm and type scale*.
 export const spacing = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32 };
 
 export const radius = { sm: 8, md: 14, lg: 20, pill: 999 };

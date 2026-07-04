@@ -7,6 +7,8 @@ import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 
 const Stack = createNativeStackNavigator();
 
+// Rendered by RootNavigator only while signed out. Headers are hidden here
+// because every screen builds its own header UI (so it can theme it from brand.json).
 export default function AuthStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>

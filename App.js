@@ -9,6 +9,9 @@ import RootNavigator from './src/navigation/RootNavigator';
 
 export default function App() {
   return (
+    // Provider order matters: gesture/safe-area wrap the whole native tree,
+    // then Theme (brand config) before Auth/ChatSettings since those screens
+    // read brand colors, and RootNavigator is innermost since it consumes all three.
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <ThemeProvider>

@@ -1,3 +1,6 @@
+// Static mock user directory. In production this would come from
+// GET /users (contact list) and GET /me (currentUser) once the API exists.
+
 export const currentUser = {
   id: 'u0',
   name: 'You',
@@ -69,6 +72,9 @@ export const users = [
   },
 ];
 
+// Lookup helper used throughout the screens/components instead of importing
+// `users` directly, so the data-fetching layer can be swapped later without
+// touching call sites.
 export function findUser(id) {
   if (id === currentUser.id) return currentUser;
   return users.find((u) => u.id === id);

@@ -13,6 +13,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useBrand, type, spacing, radius } from '../theme/ThemeContext';
 import { useAuth } from '../navigation/AuthContext';
 
+// UI-only sign-up: form fields aren't validated or sent anywhere, `signIn()`
+// signs the mock session straight in on submit.
 export default function SignUpScreen({ navigation }) {
   const brand = useBrand();
   const c = brand.colors;

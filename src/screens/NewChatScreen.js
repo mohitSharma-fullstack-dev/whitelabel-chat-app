@@ -13,6 +13,10 @@ export default function NewChatScreen({ navigation }) {
 
   const filtered = users.filter((u) => u.name.toLowerCase().includes(query.toLowerCase()));
 
+  // Reuses an existing direct chat if one exists for this user; otherwise
+  // falls back to chat 'c1' since there's no backend to create a new thread.
+  // `replace` (not `navigate`) so the modal doesn't stay in the back-stack
+  // underneath the conversation.
   const openChat = (userId) => {
     const existing = chats.find((ch) => ch.type === 'direct' && ch.userId === userId);
     navigation.replace('Conversation', { chatId: existing ? existing.id : 'c1' });

@@ -11,6 +11,8 @@ import SharedMediaScreen from '../screens/SharedMediaScreen';
 
 const Stack = createNativeStackNavigator();
 
+// Nested stack behind the "ChatsTab" bottom tab. NewChat/NewGroup/AttachmentPreview
+// use the 'modal' presentation so they slide up over the stack instead of pushing.
 export default function ChatsStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>

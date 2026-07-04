@@ -13,6 +13,8 @@ export default function GroupInfoScreen({ route, navigation }) {
   const c = brand.colors;
   const group = findGroup(groupId);
   const members = group.memberIds.map((id) => (id === 'me' ? currentUser : findUser(id)));
+  // Mute state lives in ChatSettingsContext (keyed by chatId) rather than on
+  // the group/chat data itself, since it's a per-viewer preference, not shared group state.
   const { isMuted, toggleMute } = useChatSettings();
   const muted = isMuted(chatId);
   const chat = findChat(chatId);

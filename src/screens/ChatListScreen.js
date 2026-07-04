@@ -15,6 +15,9 @@ import { findUser } from '../data/users';
 import { findGroup } from '../data/chats';
 import { useChatSettings } from '../navigation/ChatSettingsContext';
 
+// Normalizes a direct chat (linked to a user) or group chat (linked to a
+// group) into the same shape the row renderer expects, so the FlatList
+// doesn't need to branch on chat.type.
 function getChatMeta(chat) {
   if (chat.type === 'direct') {
     const user = findUser(chat.userId);
@@ -36,6 +39,9 @@ export default function ChatListScreen({ navigation }) {
   const [query, setQuery] = useState('');
   const { isMuted } = useChatSettings();
 
+  // Recomputed only when the search query changes: build a preview string per
+  // chat (last message text, or an icon+label for file/image), filter by name,
+  // then float pinned chats to the top while preserving original order otherwise.
   const rows = useMemo(() => {
     const withMeta = chats.map((chat) => {
       const meta = getChatMeta(chat);

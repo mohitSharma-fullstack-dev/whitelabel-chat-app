@@ -142,6 +142,8 @@ export const groups = [
   },
 ];
 
+// Lookup helpers so screens don't reach into the arrays directly — keeps the
+// call sites stable if this becomes an async API-backed store later.
 export function findGroup(id) {
   return groups.find((g) => g.id === id);
 }

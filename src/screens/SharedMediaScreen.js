@@ -16,6 +16,8 @@ export default function SharedMediaScreen({ route, navigation }) {
   const chat = findChat(chatId);
   const [tab, setTab] = useState('media');
 
+  // Derives both tabs' contents from the same message list rather than
+  // fetching separately, since there's no dedicated media/files endpoint.
   const media = useMemo(
     () => chat.messages.filter((m) => m.kind === 'image' || m.kind === 'video'),
     [chat]

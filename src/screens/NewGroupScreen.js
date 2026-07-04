@@ -10,6 +10,8 @@ export default function NewGroupScreen({ navigation }) {
   const c = brand.colors;
   const [selectedIds, setSelectedIds] = useState([]);
   const [groupName, setGroupName] = useState('');
+  // Two-step wizard within a single screen instead of two stack routes, so
+  // the header's back-arrow-vs-close and Next-vs-Create labels can react to it.
   const [step, setStep] = useState('members'); // members -> name
 
   const toggle = (id) => {
@@ -28,6 +30,8 @@ export default function NewGroupScreen({ navigation }) {
         <TouchableOpacity
           disabled={step === 'members' ? selectedIds.length === 0 : !groupName.trim()}
           onPress={() =>
+            // "Create" doesn't build a new chat record — no backend to persist
+            // it — it just lands on the existing group chat 'c2' as a stand-in.
             step === 'members' ? setStep('name') : navigation.replace('Conversation', { chatId: 'c2' })
           }
         >

@@ -2,6 +2,10 @@ import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useBrand, type } from '../theme/ThemeContext';
 
+// First screen in AuthStack. Purely cosmetic — no auth/session check happens
+// here (that's `isSignedIn` in RootNavigator) — it just shows brand identity
+// briefly before handing off to Login. `replace` (not `navigate`) so Splash
+// isn't left in the back-stack.
 export default function SplashScreen({ navigation }) {
   const brand = useBrand();
 

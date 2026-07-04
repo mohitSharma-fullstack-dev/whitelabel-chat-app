@@ -12,6 +12,9 @@ export default function ContactProfileScreen({ route, navigation }) {
   const brand = useBrand();
   const c = brand.colors;
   const user = findUser(userId);
+  // Mute is a per-chat viewer preference (ChatSettingsContext), not part of
+  // the user record, since the same contact could theoretically be muted in
+  // one context and not another.
   const { isMuted, toggleMute } = useChatSettings();
   const muted = isMuted(chatId);
   const chat = findChat(chatId);
